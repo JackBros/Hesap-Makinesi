@@ -1,28 +1,34 @@
-"use";
-    var _buttonlar = document.getElementsByTagName("button"),
+var _buttonlar = document.getElementsByTagName("button"),
     _uzunluk = _buttonlar.length,
     i = 0,
-    _sonuç = document.getElementById("sonuç");
+    _sonuç = document.getElementById("sonuç"),
+    _sonDeger = "";
 
-    for(i = 0; i<_uzunluk; i++){
-    
-        _buttonlar[i].onclick = hesapla;
-    
-    }
+for(i = 0; i < _uzunluk; i++){
+    _buttonlar[i].onclick = hesapla;
+}
 
-    function hesapla(){
-        var _deger = this.innerHTML;
-        if(_deger=="AC"){
-            _sonuç.value=" ";
-            return;
-        }
-        if(_deger == "="){
-            try{
-                _sonuç.value = eval(_sonuç.value);
-            }catch(e){
-                _sonuç.value="0";
-            }
-            return;
-        }
-        _sonuç.value +=_deger;
+function hesapla(){
+    var _deger = this.innerHTML;
+    if(_deger == "AC"){
+        _sonuç.value = "";
+        _sonDeger = "";
+        return;
     }
+    if(_deger == "="){
+        try{
+            _sonuç.value = eval(_sonuç.value);
+            _sonDeger = "";
+        }catch(e){
+            _sonuç.value = "0";
+        }
+        return;
+    }
+    if (!isNaN(parseInt(_deger))) {
+        _sonuç.value += _deger;
+        _sonDeger = _deger;
+    } else if ("+-*/".includes(_deger) && !"+-*/".includes(_sonDeger)) {
+        _sonuç.value += _deger;
+        _sonDeger = _deger;
+    }
+}
