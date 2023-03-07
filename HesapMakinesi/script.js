@@ -17,7 +17,8 @@ function hesapla(){
     }
     if(_deger == "="){
         try{
-            _sonuç.value = eval(_sonuç.value);
+            var _sonucDeger = eval(_sonuç.value.replace(/^0+/, ''));
+            _sonuç.value = _sonucDeger;
             _sonDeger = "";
         }catch(e){
             _sonuç.value = "0";
