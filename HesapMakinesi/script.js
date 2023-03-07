@@ -26,6 +26,9 @@ function hesapla(){
         return;
     }
     if (!isNaN(parseInt(_deger))) {
+        if (_sonuç.value === "0") {
+            _sonuç.value = "";
+        }
         _sonuç.value += _deger;
         _sonDeger = _deger;
     } else if ("+-*/".includes(_deger) && !"+-*/".includes(_sonDeger)) {
